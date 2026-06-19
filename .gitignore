@@ -1,0 +1,35 @@
+
+# Virtual environments — NEVER commit these
+.venv/
+env/
+venv/
+
+# Database files — binary data, not source code
+*.db
+documind.db
+data/documents.db
+
+# Raw and processed data — managed by DVC, not Git
+data/raw/
+data/processed/
+
+# Trained model weights — too large for Git, managed by DVC
+models/documind_v1/
+
+# Secrets — NEVER commit
+.env
+
+# MLflow experiment tracking data
+mlruns/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS artifacts
+.DS_Store
+Thumbs.db

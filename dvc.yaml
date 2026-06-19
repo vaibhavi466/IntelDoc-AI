@@ -1,0 +1,29 @@
+stages:
+  data_preparation:
+    cmd: python src/create_dataset.py
+    deps:
+      - data/raw
+      - src/create_dataset.py
+      - src/ocr_engine.py
+    outs:
+      - data/processed/documind_dataset.csv
+
+  model_training:
+    cmd: python src/train_model.py
+    deps:
+      - data/processed/documind_dataset.csv
+      - src/train_model.py
+    outs:
+      - models/documind_v1
+
+  evaluation:
+    cmd: python src/evaluate.py
+    deps:
+      - models/documind_v1
+      - data/processed/documind_dataset.csv
+      - src/evaluate.py
+    outs:
+      - models/confusion_matrix.png
+    metrics:
+      - models/eval_metrics.json:
+          cache: false

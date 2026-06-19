@@ -1,0 +1,65 @@
+schema: '2.0'
+stages:
+  data_preparation:
+    cmd: python src/create_dataset.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: ce35ba1dcf69b536ec19c90cae3d80df.dir
+      size: 1797318340
+      nfiles: 15021
+    - path: src/create_dataset.py
+      hash: md5
+      md5: 1a04d4fca888f5313a41cdfebeae5be0
+      size: 2804
+    - path: src/ocr_engine.py
+      hash: md5
+      md5: 4e6caed0bafc8abec3f2cfd26e8c9bdc
+      size: 1102
+    outs:
+    - path: data/processed/documind_dataset.csv
+      hash: md5
+      md5: 20b7871c4444c42fe7985b38b816a30d
+      size: 2001790
+  model_training:
+    cmd: python src/train_model.py
+    deps:
+    - path: data/processed/documind_dataset.csv
+      hash: md5
+      md5: 20b7871c4444c42fe7985b38b816a30d
+      size: 2001790
+    - path: src/train_model.py
+      hash: md5
+      md5: c0d0ce18f0b75d73c97e4b8bcfd78cd0
+      size: 5318
+    outs:
+    - path: models/documind_v1
+      hash: md5
+      md5: 83089f6ebf4c1b598fbeae174d62a292.dir
+      size: 268796164
+      nfiles: 7
+  evaluation:
+    cmd: python src/evaluate.py
+    deps:
+    - path: data/processed/documind_dataset.csv
+      hash: md5
+      md5: 20b7871c4444c42fe7985b38b816a30d
+      size: 2001790
+    - path: models/documind_v1
+      hash: md5
+      md5: 83089f6ebf4c1b598fbeae174d62a292.dir
+      size: 268796164
+      nfiles: 7
+    - path: src/evaluate.py
+      hash: md5
+      md5: 99f2c526e9eeb29d18ac7069ee7d1408
+      size: 3939
+    outs:
+    - path: models/confusion_matrix.png
+      hash: md5
+      md5: e9163f9a4a5d7f1e060566aa31f836ff
+      size: 59276
+    - path: models/eval_metrics.json
+      hash: md5
+      md5: babd45049ab9bdbcffac3eda7ee24e23
+      size: 1877
