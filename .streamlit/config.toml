@@ -1,0 +1,13 @@
+[theme]
+# A deep, modern dark mode palette
+primaryColor = "#8B5CF6"          # Neon Purple for main highlights
+backgroundColor = "#111827"       # Very Dark Blue/Grey (Dashboard background)
+secondaryBackgroundColor = "#1F2937" # Slightly lighter grey for sidebar/inputs
+textColor = "#F3F4F6"             # Off-white text for readability
+font = "sans serif"               # Clean modern font
+
+[server]
+headless = true
+
+[browser]
+gatherUsageStats = false

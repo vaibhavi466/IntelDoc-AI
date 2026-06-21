@@ -1,4 +1,4 @@
-# DocuMind AI — Python Dependencies
+# IntelDoc AI — Python Dependencies
 # Usage: pip install -r requirements.txt
 # After install: python -m spacy download en_core_web_sm
 

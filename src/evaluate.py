@@ -111,7 +111,7 @@ def evaluate():
     )
     plt.xlabel('Predicted')
     plt.ylabel('Actual')
-    plt.title('Confusion Matrix — DocuMind AI')
+    plt.title('Confusion Matrix — IntelDoc AI')
     plt.tight_layout()
 
     os.makedirs(os.path.dirname(str(CONFUSION_MATRIX)), exist_ok=True)

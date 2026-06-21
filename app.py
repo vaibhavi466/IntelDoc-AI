@@ -1,7 +1,10 @@
+# pyrefly: ignore [missing-import]
+import torch  # Must be imported first to avoid WinError 1114 DLL initialization conflict on Windows
 import streamlit as st
 import os
 import matplotlib.pyplot as plt
 from PIL import Image
+# pyrefly: ignore [missing-import]
 from wordcloud import WordCloud
 import pandas as pd
 import json
@@ -23,7 +26,7 @@ from src.utils import (
 init_db()
 
 # 1. Page Config
-st.set_page_config(page_title="DocuMind AI", page_icon="📄", layout="wide")
+st.set_page_config(page_title="IntelDoc AI", page_icon="📄", layout="wide")
 
 # 2. Custom CSS for "Neon/Dark" Look
 def load_css():
@@ -96,7 +99,7 @@ load_css()
 
 # 3. Sidebar Navigation
 with st.sidebar:
-    st.title("DocuMind AI")
+    st.title("IntelDoc AI")
     st.markdown("---")
     page = st.radio("Navigate to:", ["Analysis Dashboard", "History Log", "System Analytics"])
     st.markdown("---")
@@ -171,7 +174,7 @@ if page == "Analysis Dashboard":
                     st.stop()
                 
                 # Generate Summary
-                summary = generate_summary(extracted_text)
+                summary = generate_summary(extracted_text, label)
 
                 # Save to Database
                 db_msg = save_to_db(uploaded_file, label, confidence, extracted_text, summary)

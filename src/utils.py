@@ -3,6 +3,7 @@ import datetime
 import pandas as pd
 import os
 import fitz  
+import re
 from src.config import DB_PATH
 
 DB_NAME = str(DB_PATH)
@@ -112,5 +113,20 @@ def calculate_text_metrics(text):
         "Avg Word Length": round(avg_word_len, 1),
         "Readability Score (ARI)": round(4.71 * (len(text)/word_count) + 0.5 * (word_count/sentence_count) - 21.43, 1) if word_count > 0 and sentence_count > 0 else 0
     }
+
+def clean_ocr_text(text: str) -> str:
+    """
+    Cleans raw OCR text to reduce noise, fix spacing, and remove non-standard characters
+    which confuse NER and summarization models.
+    """
+    if not text:
+        return ""
+    # Replace newlines/tabs with spaces
+    cleaned = text.replace('\n', ' ').replace('\t', ' ')
+    # Remove nonsense sequences of special characters, keeping basic punctuation, letters, numbers, currency symbols
+    cleaned = re.sub(r'[^a-zA-Z0-9\s.,@#$%\-\/()&:]', ' ', cleaned)
+    # Remove any extra space
+    cleaned = re.sub(r'\s+', ' ', cleaned)
+    return cleaned.strip()
 
 

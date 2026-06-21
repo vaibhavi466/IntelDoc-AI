@@ -22,7 +22,7 @@ from datasets import Dataset, DatasetDict
 from src.config import BASE_MODEL_NAME, DATA_CSV, MODEL_DIR, BATCH_SIZE, LEARNING_RATE, NUM_EPOCHS, MAX_SEQ_LENGTH
 
 
-mlflow.set_experiment("DocuMind_Experiments")
+mlflow.set_experiment("IntelDoc_Experiments")
 
 # 1. SETUP CONFIGURATION
 # We switch to DistilBERT, which is lighter and faster for CPU training
