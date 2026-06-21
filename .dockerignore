@@ -1,0 +1,14 @@
+.git
+.venv
+__pycache__
+mlruns
+experiments
+notebooks
+data/raw
+data/processed_text
+dvc.lock
+dvc.yaml
+.dvc
+.dvcignore
+documind.db
+deploy_to_hf.py
